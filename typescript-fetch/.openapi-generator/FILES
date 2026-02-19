@@ -1,0 +1,11 @@
+.openapi-generator-ignore
+apis/DocumentsApi.ts
+apis/EnterpriseApi.ts
+apis/index.ts
+docs/AuthDTO.md
+docs/DocumentsApi.md
+docs/EnterpriseApi.md
+index.ts
+models/AuthDTO.ts
+models/index.ts
+runtime.ts

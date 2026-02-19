@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  description: ""
+  title: Futr Enterprise API Documentation
+  version: "0.1"
+servers:
+- url: /
+paths:
+  /documents:
+    post:
+      operationId: DocumentController_uploadDocument
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/DocumentController_uploadDocument_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: ""
+      security:
+      - bearer: []
+      summary: Uploading a new document
+      tags:
+      - Documents
+      x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
+  /enterprise/auth:
+    post:
+      operationId: EnterpriseController_auth
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthDTO"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: ""
+      tags:
+      - Enterprise
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    AuthDTO:
+      example:
+        clientId: clientId
+        clientSecret: clientSecret
+      properties:
+        clientId:
+          type: string
+        clientSecret:
+          type: string
+      required:
+      - clientId
+      - clientSecret
+      type: object
+    DocumentController_uploadDocument_request:
+      properties:
+        file:
+          format: binary
+          type: string
+        monetized:
+          type: boolean
+        fileHash:
+          type: string
+        derivedKey:
+          description: "required for end-client use only, enterprise should skip this\
+            \ property"
+          type: string
+        password:
+          description: user's decryption password
+          type: string
+        isID:
+          type: boolean
+        taskId:
+          type: string
+      required:
+      - file
+      - fileHash
+      - monetized
+      type: object
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+
