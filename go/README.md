@@ -80,11 +80,14 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DocumentsAPI* | [**DocumentControllerUploadDocument**](docs/DocumentsAPI.md#documentcontrolleruploaddocument) | **Post** /documents | Uploading a new document
 *EnterpriseAPI* | [**EnterpriseControllerAuth**](docs/EnterpriseAPI.md#enterprisecontrollerauth) | **Post** /enterprise/auth | 
+*EnterpriseAPI* | [**EnterpriseControllerImportClients**](docs/EnterpriseAPI.md#enterprisecontrollerimportclients) | **Post** /enterprise/import-clients | 
 
 
 ## Documentation For Models
 
  - [AuthDTO](docs/AuthDTO.md)
+ - [ImportClientDTO](docs/ImportClientDTO.md)
+ - [ImportClientsDTO](docs/ImportClientsDTO.md)
 
 
 ## Documentation For Authorization

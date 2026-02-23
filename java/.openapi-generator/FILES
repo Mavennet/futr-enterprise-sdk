@@ -9,6 +9,8 @@ build.sbt
 docs/AuthDTO.md
 docs/DocumentsApi.md
 docs/EnterpriseApi.md
+docs/ImportClientDTO.md
+docs/ImportClientsDTO.md
 git_push.sh
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
@@ -39,6 +41,10 @@ src/main/java/org/openapitools/client/auth/HttpBasicAuth.java
 src/main/java/org/openapitools/client/auth/HttpBearerAuth.java
 src/main/java/org/openapitools/client/model/AbstractOpenApiSchema.java
 src/main/java/org/openapitools/client/model/AuthDTO.java
+src/main/java/org/openapitools/client/model/ImportClientDTO.java
+src/main/java/org/openapitools/client/model/ImportClientsDTO.java
 src/test/java/org/openapitools/client/api/DocumentsApiTest.java
 src/test/java/org/openapitools/client/api/EnterpriseApiTest.java
 src/test/java/org/openapitools/client/model/AuthDTOTest.java
+src/test/java/org/openapitools/client/model/ImportClientDTOTest.java
+src/test/java/org/openapitools/client/model/ImportClientsDTOTest.java

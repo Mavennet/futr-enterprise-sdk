@@ -102,11 +102,14 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DocumentsApi* | [**document_controller_upload_document**](docs/DocumentsApi.md#document_controller_upload_document) | **POST** /documents | Uploading a new document
 *EnterpriseApi* | [**enterprise_controller_auth**](docs/EnterpriseApi.md#enterprise_controller_auth) | **POST** /enterprise/auth | 
+*EnterpriseApi* | [**enterprise_controller_import_clients**](docs/EnterpriseApi.md#enterprise_controller_import_clients) | **POST** /enterprise/import-clients | 
 
 
 ## Documentation For Models
 
  - [AuthDTO](docs/AuthDTO.md)
+ - [ImportClientDTO](docs/ImportClientDTO.md)
+ - [ImportClientsDTO](docs/ImportClientsDTO.md)
 
 
 <a id="documentation-for-authorization"></a>

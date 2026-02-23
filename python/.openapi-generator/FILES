@@ -7,6 +7,8 @@ README.md
 docs/AuthDTO.md
 docs/DocumentsApi.md
 docs/EnterpriseApi.md
+docs/ImportClientDTO.md
+docs/ImportClientsDTO.md
 git_push.sh
 openapi_client/__init__.py
 openapi_client/api/__init__.py
@@ -18,6 +20,8 @@ openapi_client/configuration.py
 openapi_client/exceptions.py
 openapi_client/models/__init__.py
 openapi_client/models/auth_dto.py
+openapi_client/models/import_client_dto.py
+openapi_client/models/import_clients_dto.py
 openapi_client/py.typed
 openapi_client/rest.py
 pyproject.toml
@@ -29,4 +33,6 @@ test/__init__.py
 test/test_auth_dto.py
 test/test_documents_api.py
 test/test_enterprise_api.py
+test/test_import_client_dto.py
+test/test_import_clients_dto.py
 tox.ini

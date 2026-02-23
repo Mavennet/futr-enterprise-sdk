@@ -46,6 +46,29 @@ paths:
               schema:
                 type: object
           description: ""
+      security:
+      - bearer: []
+      tags:
+      - Enterprise
+  /enterprise/import-clients:
+    post:
+      operationId: EnterpriseController_importClients
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImportClientsDTO"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: ""
+      security:
+      - bearer: []
       tags:
       - Enterprise
 components:
@@ -62,6 +85,36 @@ components:
       required:
       - clientId
       - clientSecret
+      type: object
+    ImportClientDTO:
+      example:
+        clientId: clientId
+        clientEmail: clientEmail
+      properties:
+        clientEmail:
+          format: email
+          type: string
+        clientId:
+          type: string
+      required:
+      - clientEmail
+      - clientId
+      type: object
+    ImportClientsDTO:
+      example:
+        clients:
+        - clientId: clientId
+          clientEmail: clientEmail
+        - clientId: clientId
+          clientEmail: clientEmail
+      properties:
+        clients:
+          items:
+            $ref: "#/components/schemas/ImportClientDTO"
+          minItems: 1
+          type: array
+      required:
+      - clients
       type: object
     DocumentController_uploadDocument_request:
       properties:

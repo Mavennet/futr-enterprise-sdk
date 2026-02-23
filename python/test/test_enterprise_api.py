@@ -32,6 +32,12 @@ class TestEnterpriseApi(unittest.TestCase):
         """
         pass
 
+    def test_enterprise_controller_import_clients(self) -> None:
+        """Test case for enterprise_controller_import_clients
+
+        """
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()

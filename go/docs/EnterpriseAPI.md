@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**EnterpriseControllerAuth**](EnterpriseAPI.md#EnterpriseControllerAuth) | **Post** /enterprise/auth | 
+[**EnterpriseControllerImportClients**](EnterpriseAPI.md#EnterpriseControllerImportClients) | **Post** /enterprise/import-clients | 
 
 
 
@@ -60,7 +61,71 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EnterpriseControllerImportClients
+
+> map[string]interface{} EnterpriseControllerImportClients(ctx).ImportClientsDTO(importClientsDTO).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	importClientsDTO := *openapiclient.NewImportClientsDTO([]openapiclient.ImportClientDTO{*openapiclient.NewImportClientDTO("ClientEmail_example", "ClientId_example")}) // ImportClientsDTO | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EnterpriseAPI.EnterpriseControllerImportClients(context.Background()).ImportClientsDTO(importClientsDTO).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EnterpriseAPI.EnterpriseControllerImportClients``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EnterpriseControllerImportClients`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `EnterpriseAPI.EnterpriseControllerImportClients`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEnterpriseControllerImportClientsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **importClientsDTO** | [**ImportClientsDTO**](ImportClientsDTO.md) |  | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[bearer](../README.md#bearer)
 
 ### HTTP request headers
 

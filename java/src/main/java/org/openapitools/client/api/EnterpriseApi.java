@@ -28,6 +28,7 @@ import java.io.IOException;
 
 
 import org.openapitools.client.model.AuthDTO;
+import org.openapitools.client.model.ImportClientsDTO;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -126,7 +127,7 @@ public class EnterpriseApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[] { "bearer" };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -195,6 +196,133 @@ public class EnterpriseApi {
     public okhttp3.Call enterpriseControllerAuthAsync(@javax.annotation.Nonnull AuthDTO authDTO, final ApiCallback<Object> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = enterpriseControllerAuthValidateBeforeCall(authDTO, _callback);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for enterpriseControllerImportClients
+     * @param importClientsDTO  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call enterpriseControllerImportClientsCall(@javax.annotation.Nonnull ImportClientsDTO importClientsDTO, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = importClientsDTO;
+
+        // create path and map variables
+        String localVarPath = "/enterprise/import-clients";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearer" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call enterpriseControllerImportClientsValidateBeforeCall(@javax.annotation.Nonnull ImportClientsDTO importClientsDTO, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'importClientsDTO' is set
+        if (importClientsDTO == null) {
+            throw new ApiException("Missing the required parameter 'importClientsDTO' when calling enterpriseControllerImportClients(Async)");
+        }
+
+        return enterpriseControllerImportClientsCall(importClientsDTO, _callback);
+
+    }
+
+    /**
+     * 
+     * 
+     * @param importClientsDTO  (required)
+     * @return Object
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public Object enterpriseControllerImportClients(@javax.annotation.Nonnull ImportClientsDTO importClientsDTO) throws ApiException {
+        ApiResponse<Object> localVarResp = enterpriseControllerImportClientsWithHttpInfo(importClientsDTO);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * 
+     * @param importClientsDTO  (required)
+     * @return ApiResponse&lt;Object&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Object> enterpriseControllerImportClientsWithHttpInfo(@javax.annotation.Nonnull ImportClientsDTO importClientsDTO) throws ApiException {
+        okhttp3.Call localVarCall = enterpriseControllerImportClientsValidateBeforeCall(importClientsDTO, null);
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * 
+     * @param importClientsDTO  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call enterpriseControllerImportClientsAsync(@javax.annotation.Nonnull ImportClientsDTO importClientsDTO, final ApiCallback<Object> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = enterpriseControllerImportClientsValidateBeforeCall(importClientsDTO, _callback);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

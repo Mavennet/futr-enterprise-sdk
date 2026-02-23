@@ -16,14 +16,21 @@
 import * as runtime from '../runtime';
 import type {
   AuthDTO,
+  ImportClientsDTO,
 } from '../models/index';
 import {
     AuthDTOFromJSON,
     AuthDTOToJSON,
+    ImportClientsDTOFromJSON,
+    ImportClientsDTOToJSON,
 } from '../models/index';
 
 export interface EnterpriseControllerAuthRequest {
     authDTO: AuthDTO;
+}
+
+export interface EnterpriseControllerImportClientsRequest {
+    importClientsDTO: ImportClientsDTO;
 }
 
 /**
@@ -48,6 +55,14 @@ export class EnterpriseApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
 
         let urlPath = `/enterprise/auth`;
 
@@ -73,6 +88,59 @@ export class EnterpriseApi extends runtime.BaseAPI {
      */
     async enterpriseControllerAuth(requestParameters: EnterpriseControllerAuthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.enterpriseControllerAuthRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates request options for enterpriseControllerImportClients without sending the request
+     */
+    async enterpriseControllerImportClientsRequestOpts(requestParameters: EnterpriseControllerImportClientsRequest): Promise<runtime.RequestOpts> {
+        if (requestParameters['importClientsDTO'] == null) {
+            throw new runtime.RequiredError(
+                'importClientsDTO',
+                'Required parameter "importClientsDTO" was null or undefined when calling enterpriseControllerImportClients().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+
+        let urlPath = `/enterprise/import-clients`;
+
+        return {
+            path: urlPath,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ImportClientsDTOToJSON(requestParameters['importClientsDTO']),
+        };
+    }
+
+    /**
+     */
+    async enterpriseControllerImportClientsRaw(requestParameters: EnterpriseControllerImportClientsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+        const requestOptions = await this.enterpriseControllerImportClientsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     */
+    async enterpriseControllerImportClients(requestParameters: EnterpriseControllerImportClientsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+        const response = await this.enterpriseControllerImportClientsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

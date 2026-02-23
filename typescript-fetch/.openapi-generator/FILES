@@ -5,7 +5,11 @@ apis/index.ts
 docs/AuthDTO.md
 docs/DocumentsApi.md
 docs/EnterpriseApi.md
+docs/ImportClientDTO.md
+docs/ImportClientsDTO.md
 index.ts
 models/AuthDTO.ts
+models/ImportClientDTO.ts
+models/ImportClientsDTO.ts
 models/index.ts
 runtime.ts

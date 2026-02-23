@@ -46,24 +46,43 @@ import java.util.Set;
 import org.openapitools.client.JSON;
 
 /**
- * AuthDTO
+ * ImportClientDTO
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-23T16:55:07.060847421Z[Etc/UTC]", comments = "Generator version: 7.20.0")
-public class AuthDTO {
+public class ImportClientDTO {
+  public static final String SERIALIZED_NAME_CLIENT_EMAIL = "clientEmail";
+  @SerializedName(SERIALIZED_NAME_CLIENT_EMAIL)
+  @javax.annotation.Nonnull
+  private String clientEmail;
+
   public static final String SERIALIZED_NAME_CLIENT_ID = "clientId";
   @SerializedName(SERIALIZED_NAME_CLIENT_ID)
   @javax.annotation.Nonnull
   private String clientId;
 
-  public static final String SERIALIZED_NAME_CLIENT_SECRET = "clientSecret";
-  @SerializedName(SERIALIZED_NAME_CLIENT_SECRET)
-  @javax.annotation.Nonnull
-  private String clientSecret;
-
-  public AuthDTO() {
+  public ImportClientDTO() {
   }
 
-  public AuthDTO clientId(@javax.annotation.Nonnull String clientId) {
+  public ImportClientDTO clientEmail(@javax.annotation.Nonnull String clientEmail) {
+    this.clientEmail = clientEmail;
+    return this;
+  }
+
+  /**
+   * Get clientEmail
+   * @return clientEmail
+   */
+  @javax.annotation.Nonnull
+  public String getClientEmail() {
+    return clientEmail;
+  }
+
+  public void setClientEmail(@javax.annotation.Nonnull String clientEmail) {
+    this.clientEmail = clientEmail;
+  }
+
+
+  public ImportClientDTO clientId(@javax.annotation.Nonnull String clientId) {
     this.clientId = clientId;
     return this;
   }
@@ -82,25 +101,6 @@ public class AuthDTO {
   }
 
 
-  public AuthDTO clientSecret(@javax.annotation.Nonnull String clientSecret) {
-    this.clientSecret = clientSecret;
-    return this;
-  }
-
-  /**
-   * Get clientSecret
-   * @return clientSecret
-   */
-  @javax.annotation.Nonnull
-  public String getClientSecret() {
-    return clientSecret;
-  }
-
-  public void setClientSecret(@javax.annotation.Nonnull String clientSecret) {
-    this.clientSecret = clientSecret;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -110,22 +110,22 @@ public class AuthDTO {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AuthDTO authDTO = (AuthDTO) o;
-    return Objects.equals(this.clientId, authDTO.clientId) &&
-        Objects.equals(this.clientSecret, authDTO.clientSecret);
+    ImportClientDTO importClientDTO = (ImportClientDTO) o;
+    return Objects.equals(this.clientEmail, importClientDTO.clientEmail) &&
+        Objects.equals(this.clientId, importClientDTO.clientId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clientId, clientSecret);
+    return Objects.hash(clientEmail, clientId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AuthDTO {\n");
+    sb.append("class ImportClientDTO {\n");
+    sb.append("    clientEmail: ").append(toIndentedString(clientEmail)).append("\n");
     sb.append("    clientId: ").append(toIndentedString(clientId)).append("\n");
-    sb.append("    clientSecret: ").append(toIndentedString(clientSecret)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -147,45 +147,45 @@ public class AuthDTO {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("clientId", "clientSecret"));
+    openapiFields = new HashSet<String>(Arrays.asList("clientEmail", "clientId"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>(Arrays.asList("clientId", "clientSecret"));
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("clientEmail", "clientId"));
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AuthDTO
+   * @throws IOException if the JSON Element is invalid with respect to ImportClientDTO
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!AuthDTO.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in AuthDTO is not found in the empty JSON string", AuthDTO.openapiRequiredFields.toString()));
+        if (!ImportClientDTO.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field(s) %s in ImportClientDTO is not found in the empty JSON string", ImportClientDTO.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!AuthDTO.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `AuthDTO` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!ImportClientDTO.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The field `%s` in the JSON string is not defined in the `ImportClientDTO` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : AuthDTO.openapiRequiredFields) {
+      for (String requiredField : ImportClientDTO.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("clientEmail").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `clientEmail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("clientEmail").toString()));
+      }
       if (!jsonObj.get("clientId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `clientId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("clientId").toString()));
-      }
-      if (!jsonObj.get("clientSecret").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `clientSecret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("clientSecret").toString()));
       }
   }
 
@@ -193,22 +193,22 @@ public class AuthDTO {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!AuthDTO.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'AuthDTO' and its subtypes
+       if (!ImportClientDTO.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ImportClientDTO' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<AuthDTO> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(AuthDTO.class));
+       final TypeAdapter<ImportClientDTO> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ImportClientDTO.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<AuthDTO>() {
+       return (TypeAdapter<T>) new TypeAdapter<ImportClientDTO>() {
            @Override
-           public void write(JsonWriter out, AuthDTO value) throws IOException {
+           public void write(JsonWriter out, ImportClientDTO value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public AuthDTO read(JsonReader in) throws IOException {
+           public ImportClientDTO read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -219,18 +219,18 @@ public class AuthDTO {
   }
 
   /**
-   * Create an instance of AuthDTO given an JSON string
+   * Create an instance of ImportClientDTO given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AuthDTO
-   * @throws IOException if the JSON string is invalid with respect to AuthDTO
+   * @return An instance of ImportClientDTO
+   * @throws IOException if the JSON string is invalid with respect to ImportClientDTO
    */
-  public static AuthDTO fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AuthDTO.class);
+  public static ImportClientDTO fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ImportClientDTO.class);
   }
 
   /**
-   * Convert an instance of AuthDTO to an JSON string
+   * Convert an instance of ImportClientDTO to an JSON string
    *
    * @return JSON string
    */

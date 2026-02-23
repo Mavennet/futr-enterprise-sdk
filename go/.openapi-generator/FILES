@@ -10,10 +10,14 @@ configuration.go
 docs/AuthDTO.md
 docs/DocumentsAPI.md
 docs/EnterpriseAPI.md
+docs/ImportClientDTO.md
+docs/ImportClientsDTO.md
 git_push.sh
 go.mod
 go.sum
 model_auth_dto.go
+model_import_client_dto.go
+model_import_clients_dto.go
 response.go
 test/api_documents_test.go
 test/api_enterprise_test.go

@@ -15,6 +15,7 @@ package org.openapitools.client.api;
 
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.AuthDTO;
+import org.openapitools.client.model.ImportClientsDTO;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -38,6 +39,16 @@ public class EnterpriseApiTest {
     public void enterpriseControllerAuthTest() throws ApiException {
         AuthDTO authDTO = null;
         Object response = api.enterpriseControllerAuth(authDTO);
+        // TODO: test validations
+    }
+
+    /**
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void enterpriseControllerImportClientsTest() throws ApiException {
+        ImportClientsDTO importClientsDTO = null;
+        Object response = api.enterpriseControllerImportClients(importClientsDTO);
         // TODO: test validations
     }
 
