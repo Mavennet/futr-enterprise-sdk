@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * AuthDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-27T14:15:34.453128362Z[Etc/UTC]", comments = "Generator version: 7.20.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-02-27T19:44:05.796895927Z[Etc/UTC]", comments = "Generator version: 7.20.0")
 public class AuthDTO {
   public static final String SERIALIZED_NAME_CLIENT_ID = "clientId";
   @SerializedName(SERIALIZED_NAME_CLIENT_ID)
