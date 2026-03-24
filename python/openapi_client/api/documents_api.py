@@ -64,7 +64,7 @@ class DocumentsApi:
 
 
         :param file: (required)
-        :type file: bytearray
+        :type file: bytes
         :param monetized: (required)
         :type monetized: bool
         :param file_hash: (required)
@@ -154,7 +154,7 @@ class DocumentsApi:
 
 
         :param file: (required)
-        :type file: bytearray
+        :type file: bytes
         :param monetized: (required)
         :type monetized: bool
         :param file_hash: (required)
@@ -244,7 +244,7 @@ class DocumentsApi:
 
 
         :param file: (required)
-        :type file: bytearray
+        :type file: bytes
         :param monetized: (required)
         :type monetized: bool
         :param file_hash: (required)

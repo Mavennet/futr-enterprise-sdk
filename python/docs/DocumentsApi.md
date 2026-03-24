@@ -41,7 +41,7 @@ configuration = openapi_client.Configuration(
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.DocumentsApi(api_client)
-    file = None # bytearray | 
+    file = None # bytes | 
     monetized = True # bool | 
     file_hash = 'file_hash_example' # str | 
     derived_key = 'derived_key_example' # str | required for end-client use only, enterprise should skip this property (optional)
@@ -65,7 +65,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **file** | **bytearray**|  | 
+ **file** | **bytes**|  | 
  **monetized** | **bool**|  | 
  **file_hash** | **str**|  | 
  **derived_key** | **str**| required for end-client use only, enterprise should skip this property | [optional] 
