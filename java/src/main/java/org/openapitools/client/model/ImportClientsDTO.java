@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * ImportClientsDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-25T16:47:41.798265662Z[Etc/UTC]", comments = "Generator version: 7.21.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-25T16:50:53.226325219Z[Etc/UTC]", comments = "Generator version: 7.21.0")
 public class ImportClientsDTO {
   public static final String SERIALIZED_NAME_CLIENTS = "clients";
   @SerializedName(SERIALIZED_NAME_CLIENTS)
