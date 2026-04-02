@@ -35,19 +35,11 @@ class TestImportClientsDTO(unittest.TestCase):
         model = ImportClientsDTO()
         if include_optional:
             return ImportClientsDTO(
-                clients = [
-                    openapi_client.models.import_client_dto.ImportClientDTO(
-                        client_email = '', 
-                        client_id = '', )
-                    ]
+                clients = [{"clientEmail":"client1@example.com","clientId":"client_001"},{"clientEmail":"client2@example.com","clientId":"client_002"}]
             )
         else:
             return ImportClientsDTO(
-                clients = [
-                    openapi_client.models.import_client_dto.ImportClientDTO(
-                        client_email = '', 
-                        client_id = '', )
-                    ],
+                clients = [{"clientEmail":"client1@example.com","clientId":"client_001"},{"clientEmail":"client2@example.com","clientId":"client_002"}],
         )
         """
 

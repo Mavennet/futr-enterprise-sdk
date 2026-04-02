@@ -20,13 +20,13 @@ import { mapValues } from '../runtime';
  */
 export interface AuthDTO {
     /**
-     * 
+     * The OAuth2 client ID for your application
      * @type {string}
      * @memberof AuthDTO
      */
     clientId: string;
     /**
-     * 
+     * The OAuth2 client secret for your application
      * @type {string}
      * @memberof AuthDTO
      */

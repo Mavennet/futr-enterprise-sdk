@@ -27,8 +27,8 @@ class ImportClientDTO(BaseModel):
     """
     ImportClientDTO
     """ # noqa: E501
-    client_email: StrictStr = Field(alias="clientEmail")
-    client_id: StrictStr = Field(alias="clientId")
+    client_email: StrictStr = Field(description="Email address of the client to import", alias="clientEmail")
+    client_id: StrictStr = Field(description="Unique external identifier for the client. Used to track and associate this consumer with your external enterprise system. This ID is stored in the system and can be used for reporting and client tracking purposes.", alias="clientId")
     __properties: ClassVar[List[str]] = ["clientEmail", "clientId"]
 
     model_config = ConfigDict(

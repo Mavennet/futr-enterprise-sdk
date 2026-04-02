@@ -16,8 +16,8 @@ import type { AuthDTO } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "clientId": null,
-  "clientSecret": null,
+  "clientId": abc123xyz789,
+  "clientSecret": secret_key_12345,
 } satisfies AuthDTO
 
 console.log(example)

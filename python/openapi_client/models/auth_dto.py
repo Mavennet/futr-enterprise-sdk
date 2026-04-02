@@ -27,8 +27,8 @@ class AuthDTO(BaseModel):
     """
     AuthDTO
     """ # noqa: E501
-    client_id: StrictStr = Field(alias="clientId")
-    client_secret: StrictStr = Field(alias="clientSecret")
+    client_id: StrictStr = Field(description="The OAuth2 client ID for your application", alias="clientId")
+    client_secret: StrictStr = Field(description="The OAuth2 client secret for your application", alias="clientSecret")
     __properties: ClassVar[List[str]] = ["clientId", "clientSecret"]
 
     model_config = ConfigDict(

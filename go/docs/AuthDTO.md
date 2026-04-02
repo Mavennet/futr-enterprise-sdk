@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientId** | **string** |  | 
-**ClientSecret** | **string** |  | 
+**ClientId** | **string** | The OAuth2 client ID for your application | 
+**ClientSecret** | **string** | The OAuth2 client secret for your application | 
 
 ## Methods
 

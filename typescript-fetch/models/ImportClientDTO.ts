@@ -20,13 +20,13 @@ import { mapValues } from '../runtime';
  */
 export interface ImportClientDTO {
     /**
-     * 
+     * Email address of the client to import
      * @type {string}
      * @memberof ImportClientDTO
      */
     clientEmail: string;
     /**
-     * 
+     * Unique external identifier for the client. Used to track and associate this consumer with your external enterprise system. This ID is stored in the system and can be used for reporting and client tracking purposes.
      * @type {string}
      * @memberof ImportClientDTO
      */

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**client_id** | **str** |  | 
-**client_secret** | **str** |  | 
+**client_id** | **str** | The OAuth2 client ID for your application | 
+**client_secret** | **str** | The OAuth2 client secret for your application | 
 
 ## Example
 

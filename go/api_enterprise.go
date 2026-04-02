@@ -33,12 +33,17 @@ func (r ApiEnterpriseControllerAuthRequest) AuthDTO(authDTO AuthDTO) ApiEnterpri
 	return r
 }
 
-func (r ApiEnterpriseControllerAuthRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiEnterpriseControllerAuthRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.EnterpriseControllerAuthExecute(r)
 }
 
 /*
-EnterpriseControllerAuth Method for EnterpriseControllerAuth
+EnterpriseControllerAuth Authenticate and retrieve OAuth2 token
+
+Exchanges your enterprise client credentials for an
+OAuth2 access token. This token is required for accessing protected
+enterprise endpoints including import-clients and document operations.
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiEnterpriseControllerAuthRequest
@@ -51,13 +56,13 @@ func (a *EnterpriseAPIService) EnterpriseControllerAuth(ctx context.Context) Api
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *EnterpriseAPIService) EnterpriseControllerAuthExecute(r ApiEnterpriseControllerAuthRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *EnterpriseAPIService) EnterpriseControllerAuthExecute(r ApiEnterpriseControllerAuthRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EnterpriseAPIService.EnterpriseControllerAuth")
@@ -141,12 +146,41 @@ func (r ApiEnterpriseControllerImportClientsRequest) ImportClientsDTO(importClie
 	return r
 }
 
-func (r ApiEnterpriseControllerImportClientsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiEnterpriseControllerImportClientsRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.EnterpriseControllerImportClientsExecute(r)
 }
 
 /*
-EnterpriseControllerImportClients Method for EnterpriseControllerImportClients
+EnterpriseControllerImportClients Import enterprise clients
+
+Imports a list of clients into your organization. Requires a
+valid OAuth2 access token obtained from the /auth endpoint. Each client
+will be added to your organization with the provided email and unique
+external client ID.
+
+The clientId will serve as an external identifier to track which
+enterprise client each consumer belongs to. Critically, this clientId
+mapping determines document upload behavior: documents uploaded by
+imported clients will be stored unencrypted (enterprise-managed storage).
+Clients will be created in Cognito if they do not already exist, and
+their association with your organization and the provided clientId will
+be stored in the system.
+
+Import Format:
+A customer-generated CSV file will be used to onboard multiple users in
+bulk. The CSV file will have the following format:
+
+clientEmail,clientId
+
+When using the Brands App, the user's email will be used as the
+clientEmail and the initial password will be an OTP sent to the
+user's email. The clientId will be any unique identifier from your
+enterprise system that you want to associate with this client. This will
+allow you to maintain a mapping between your enterprise system and the
+consumers created in this platform, and will enable unencrypted document
+storage for these clients.
+
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiEnterpriseControllerImportClientsRequest
@@ -159,13 +193,13 @@ func (a *EnterpriseAPIService) EnterpriseControllerImportClients(ctx context.Con
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *EnterpriseAPIService) EnterpriseControllerImportClientsExecute(r ApiEnterpriseControllerImportClientsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *EnterpriseAPIService) EnterpriseControllerImportClientsExecute(r ApiEnterpriseControllerImportClientsRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EnterpriseAPIService.EnterpriseControllerImportClients")

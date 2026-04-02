@@ -83,7 +83,9 @@ public class EnterpriseApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully authenticated. Access token returned with doc/upload scope. </td><td>  -  </td></tr>
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Invalid client credentials provided. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call enterpriseControllerAuthCall(@javax.annotation.Nonnull AuthDTO authDTO, final ApiCallback _callback) throws ApiException {
@@ -127,7 +129,7 @@ public class EnterpriseApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] { "bearer" };
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -143,8 +145,8 @@ public class EnterpriseApi {
     }
 
     /**
-     * 
-     * 
+     * Authenticate and retrieve OAuth2 token
+     * Exchanges your enterprise client credentials for an OAuth2 access token. This token is required for accessing protected enterprise endpoints including import-clients and document operations. 
      * @param authDTO  (required)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -152,7 +154,9 @@ public class EnterpriseApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully authenticated. Access token returned with doc/upload scope. </td><td>  -  </td></tr>
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Invalid client credentials provided. </td><td>  -  </td></tr>
      </table>
      */
     public Object enterpriseControllerAuth(@javax.annotation.Nonnull AuthDTO authDTO) throws ApiException {
@@ -161,8 +165,8 @@ public class EnterpriseApi {
     }
 
     /**
-     * 
-     * 
+     * Authenticate and retrieve OAuth2 token
+     * Exchanges your enterprise client credentials for an OAuth2 access token. This token is required for accessing protected enterprise endpoints including import-clients and document operations. 
      * @param authDTO  (required)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -170,7 +174,9 @@ public class EnterpriseApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully authenticated. Access token returned with doc/upload scope. </td><td>  -  </td></tr>
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Invalid client credentials provided. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Object> enterpriseControllerAuthWithHttpInfo(@javax.annotation.Nonnull AuthDTO authDTO) throws ApiException {
@@ -180,8 +186,8 @@ public class EnterpriseApi {
     }
 
     /**
-     *  (asynchronously)
-     * 
+     * Authenticate and retrieve OAuth2 token (asynchronously)
+     * Exchanges your enterprise client credentials for an OAuth2 access token. This token is required for accessing protected enterprise endpoints including import-clients and document operations. 
      * @param authDTO  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -190,7 +196,9 @@ public class EnterpriseApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully authenticated. Access token returned with doc/upload scope. </td><td>  -  </td></tr>
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Invalid client credentials provided. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call enterpriseControllerAuthAsync(@javax.annotation.Nonnull AuthDTO authDTO, final ApiCallback<Object> _callback) throws ApiException {
@@ -210,7 +218,10 @@ public class EnterpriseApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Clients successfully imported. Returns an empty response body. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request body. Ensure clients array has at least 1 item and all fields are valid. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. Invalid or missing OAuth2 token. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Your organization does not have enterprise access. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call enterpriseControllerImportClientsCall(@javax.annotation.Nonnull ImportClientsDTO importClientsDTO, final ApiCallback _callback) throws ApiException {
@@ -270,8 +281,8 @@ public class EnterpriseApi {
     }
 
     /**
-     * 
-     * 
+     * Import enterprise clients
+     * Imports a list of clients into your organization. Requires a valid OAuth2 access token obtained from the /auth endpoint. Each client will be added to your organization with the provided email and unique external client ID.  The clientId will serve as an external identifier to track which enterprise client each consumer belongs to. Critically, this clientId mapping determines document upload behavior: documents uploaded by imported clients will be stored unencrypted (enterprise-managed storage). Clients will be created in Cognito if they do not already exist, and their association with your organization and the provided clientId will be stored in the system.  Import Format: A customer-generated CSV file will be used to onboard multiple users in bulk. The CSV file will have the following format:  clientEmail,clientId  When using the Brands App, the user&#39;s email will be used as the clientEmail and the initial password will be an OTP sent to the user&#39;s email. The clientId will be any unique identifier from your enterprise system that you want to associate with this client. This will allow you to maintain a mapping between your enterprise system and the consumers created in this platform, and will enable unencrypted document storage for these clients.  
      * @param importClientsDTO  (required)
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -279,7 +290,10 @@ public class EnterpriseApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Clients successfully imported. Returns an empty response body. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request body. Ensure clients array has at least 1 item and all fields are valid. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. Invalid or missing OAuth2 token. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Your organization does not have enterprise access. </td><td>  -  </td></tr>
      </table>
      */
     public Object enterpriseControllerImportClients(@javax.annotation.Nonnull ImportClientsDTO importClientsDTO) throws ApiException {
@@ -288,8 +302,8 @@ public class EnterpriseApi {
     }
 
     /**
-     * 
-     * 
+     * Import enterprise clients
+     * Imports a list of clients into your organization. Requires a valid OAuth2 access token obtained from the /auth endpoint. Each client will be added to your organization with the provided email and unique external client ID.  The clientId will serve as an external identifier to track which enterprise client each consumer belongs to. Critically, this clientId mapping determines document upload behavior: documents uploaded by imported clients will be stored unencrypted (enterprise-managed storage). Clients will be created in Cognito if they do not already exist, and their association with your organization and the provided clientId will be stored in the system.  Import Format: A customer-generated CSV file will be used to onboard multiple users in bulk. The CSV file will have the following format:  clientEmail,clientId  When using the Brands App, the user&#39;s email will be used as the clientEmail and the initial password will be an OTP sent to the user&#39;s email. The clientId will be any unique identifier from your enterprise system that you want to associate with this client. This will allow you to maintain a mapping between your enterprise system and the consumers created in this platform, and will enable unencrypted document storage for these clients.  
      * @param importClientsDTO  (required)
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -297,7 +311,10 @@ public class EnterpriseApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Clients successfully imported. Returns an empty response body. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request body. Ensure clients array has at least 1 item and all fields are valid. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. Invalid or missing OAuth2 token. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Your organization does not have enterprise access. </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<Object> enterpriseControllerImportClientsWithHttpInfo(@javax.annotation.Nonnull ImportClientsDTO importClientsDTO) throws ApiException {
@@ -307,8 +324,8 @@ public class EnterpriseApi {
     }
 
     /**
-     *  (asynchronously)
-     * 
+     * Import enterprise clients (asynchronously)
+     * Imports a list of clients into your organization. Requires a valid OAuth2 access token obtained from the /auth endpoint. Each client will be added to your organization with the provided email and unique external client ID.  The clientId will serve as an external identifier to track which enterprise client each consumer belongs to. Critically, this clientId mapping determines document upload behavior: documents uploaded by imported clients will be stored unencrypted (enterprise-managed storage). Clients will be created in Cognito if they do not already exist, and their association with your organization and the provided clientId will be stored in the system.  Import Format: A customer-generated CSV file will be used to onboard multiple users in bulk. The CSV file will have the following format:  clientEmail,clientId  When using the Brands App, the user&#39;s email will be used as the clientEmail and the initial password will be an OTP sent to the user&#39;s email. The clientId will be any unique identifier from your enterprise system that you want to associate with this client. This will allow you to maintain a mapping between your enterprise system and the consumers created in this platform, and will enable unencrypted document storage for these clients.  
      * @param importClientsDTO  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -317,7 +334,10 @@ public class EnterpriseApi {
      <table border="1">
        <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Clients successfully imported. Returns an empty response body. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid request body. Ensure clients array has at least 1 item and all fields are valid. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized. Invalid or missing OAuth2 token. </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> Forbidden. Your organization does not have enterprise access. </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call enterpriseControllerImportClientsAsync(@javax.annotation.Nonnull ImportClientsDTO importClientsDTO, final ApiCallback<Object> _callback) throws ApiException {

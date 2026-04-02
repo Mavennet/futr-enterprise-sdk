@@ -31,32 +31,98 @@ paths:
       - Documents
   /enterprise/auth:
     post:
+      description: |
+        Exchanges your enterprise client credentials for an
+        OAuth2 access token. This token is required for accessing protected
+        enterprise endpoints including import-clients and document operations.
       operationId: EnterpriseController_auth
       parameters: []
       requestBody:
         content:
           application/json:
+            examples:
+              basic:
+                summary: Basic authentication example
+                value:
+                  clientId: abc123xyz789
+                  clientSecret: secret_key_12345
             schema:
               $ref: "#/components/schemas/AuthDTO"
         required: true
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                example:
+                  access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+                  token_type: Bearer
+                  expires_in: 3600
+          description: Successfully authenticated. Access token returned with doc/upload
+            scope.
         "201":
           content:
             application/json:
               schema:
                 type: object
           description: ""
-      security:
-      - bearer: []
+        "401":
+          description: Invalid client credentials provided.
+      summary: Authenticate and retrieve OAuth2 token
       tags:
       - Enterprise
   /enterprise/import-clients:
     post:
+      description: |+
+        Imports a list of clients into your organization. Requires a
+        valid OAuth2 access token obtained from the /auth endpoint. Each client
+        will be added to your organization with the provided email and unique
+        external client ID.
+
+        The clientId will serve as an external identifier to track which
+        enterprise client each consumer belongs to. Critically, this clientId
+        mapping determines document upload behavior: documents uploaded by
+        imported clients will be stored unencrypted (enterprise-managed storage).
+        Clients will be created in Cognito if they do not already exist, and
+        their association with your organization and the provided clientId will
+        be stored in the system.
+
+        Import Format:
+        A customer-generated CSV file will be used to onboard multiple users in
+        bulk. The CSV file will have the following format:
+
+        clientEmail,clientId
+
+        When using the Brands App, the user's email will be used as the
+        clientEmail and the initial password will be an OTP sent to the
+        user's email. The clientId will be any unique identifier from your
+        enterprise system that you want to associate with this client. This will
+        allow you to maintain a mapping between your enterprise system and the
+        consumers created in this platform, and will enable unencrypted document
+        storage for these clients.
+
       operationId: EnterpriseController_importClients
       parameters: []
       requestBody:
         content:
           application/json:
+            examples:
+              singleClient:
+                summary: Import single client
+                value:
+                  clients:
+                  - clientEmail: client@example.com
+                    clientId: client_001
+              multipleClients:
+                summary: Import multiple clients
+                value:
+                  clients:
+                  - clientEmail: client1@example.com
+                    clientId: client_001
+                  - clientEmail: client2@example.com
+                    clientId: client_002
+                  - clientEmail: client3@example.com
+                    clientId: client_003
             schema:
               $ref: "#/components/schemas/ImportClientsDTO"
         required: true
@@ -65,36 +131,52 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-          description: ""
+                example: {}
+          description: Clients successfully imported. Returns an empty response body.
+        "400":
+          description: Invalid request body. Ensure clients array has at least 1 item
+            and all fields are valid.
+        "401":
+          description: Unauthorized. Invalid or missing OAuth2 token.
+        "403":
+          description: Forbidden. Your organization does not have enterprise access.
       security:
       - bearer: []
+      summary: Import enterprise clients
       tags:
       - Enterprise
 components:
   schemas:
     AuthDTO:
       example:
-        clientId: clientId
-        clientSecret: clientSecret
+        clientId: abc123xyz789
+        clientSecret: secret_key_12345
       properties:
         clientId:
+          description: The OAuth2 client ID for your application
+          example: abc123xyz789
           type: string
         clientSecret:
+          description: The OAuth2 client secret for your application
+          example: secret_key_12345
           type: string
       required:
       - clientId
       - clientSecret
       type: object
     ImportClientDTO:
-      example:
-        clientId: clientId
-        clientEmail: clientEmail
       properties:
         clientEmail:
+          description: Email address of the client to import
+          example: client@example.com
           format: email
           type: string
         clientId:
+          description: Unique external identifier for the client. Used to track and
+            associate this consumer with your external enterprise system. This ID
+            is stored in the system and can be used for reporting and client tracking
+            purposes.
+          example: client_001
           type: string
       required:
       - clientEmail
@@ -103,12 +185,21 @@ components:
     ImportClientsDTO:
       example:
         clients:
-        - clientId: clientId
-          clientEmail: clientEmail
-        - clientId: clientId
-          clientEmail: clientEmail
+        - clientEmail: client1@example.com
+          clientId: client_001
+        - clientEmail: client2@example.com
+          clientId: client_002
       properties:
         clients:
+          description: Array of clients to import. Each client is identified by their
+            email and a unique external ID from your enterprise system. The external
+            ID (clientId) is used to maintain a mapping between your enterprise system
+            and the consumers created in this platform. Minimum 1 client required.
+          example:
+          - clientEmail: client1@example.com
+            clientId: client_001
+          - clientEmail: client2@example.com
+            clientId: client_002
           items:
             $ref: "#/components/schemas/ImportClientDTO"
           minItems: 1

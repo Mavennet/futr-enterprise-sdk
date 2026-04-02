@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * ImportClientDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-02T15:58:57.621227347Z[Etc/UTC]", comments = "Generator version: 7.21.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-02T16:02:37.886142729Z[Etc/UTC]", comments = "Generator version: 7.21.0")
 public class ImportClientDTO {
   public static final String SERIALIZED_NAME_CLIENT_EMAIL = "clientEmail";
   @SerializedName(SERIALIZED_NAME_CLIENT_EMAIL)
@@ -69,7 +69,7 @@ public class ImportClientDTO {
   }
 
   /**
-   * Get clientEmail
+   * Email address of the client to import
    * @return clientEmail
    */
   @javax.annotation.Nonnull
@@ -88,7 +88,7 @@ public class ImportClientDTO {
   }
 
   /**
-   * Get clientId
+   * Unique external identifier for the client. Used to track and associate this consumer with your external enterprise system. This ID is stored in the system and can be used for reporting and client tracking purposes.
    * @return clientId
    */
   @javax.annotation.Nonnull

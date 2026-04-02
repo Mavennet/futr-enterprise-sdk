@@ -21,7 +21,9 @@ var _ MappedNullable = &AuthDTO{}
 
 // AuthDTO struct for AuthDTO
 type AuthDTO struct {
+	// The OAuth2 client ID for your application
 	ClientId string `json:"clientId"`
+	// The OAuth2 client secret for your application
 	ClientSecret string `json:"clientSecret"`
 }
 

@@ -4,14 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**EnterpriseControllerAuth**](EnterpriseAPI.md#EnterpriseControllerAuth) | **Post** /enterprise/auth | 
-[**EnterpriseControllerImportClients**](EnterpriseAPI.md#EnterpriseControllerImportClients) | **Post** /enterprise/import-clients | 
+[**EnterpriseControllerAuth**](EnterpriseAPI.md#EnterpriseControllerAuth) | **Post** /enterprise/auth | Authenticate and retrieve OAuth2 token
+[**EnterpriseControllerImportClients**](EnterpriseAPI.md#EnterpriseControllerImportClients) | **Post** /enterprise/import-clients | Import enterprise clients
 
 
 
 ## EnterpriseControllerAuth
 
-> map[string]interface{} EnterpriseControllerAuth(ctx).AuthDTO(authDTO).Execute()
+> interface{} EnterpriseControllerAuth(ctx).AuthDTO(authDTO).Execute()
+
+Authenticate and retrieve OAuth2 token
 
 
 
@@ -28,7 +30,7 @@ import (
 )
 
 func main() {
-	authDTO := *openapiclient.NewAuthDTO("ClientId_example", "ClientSecret_example") // AuthDTO | 
+	authDTO := *openapiclient.NewAuthDTO("abc123xyz789", "secret_key_12345") // AuthDTO | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -37,7 +39,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `EnterpriseAPI.EnterpriseControllerAuth``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `EnterpriseControllerAuth`: map[string]interface{}
+	// response from `EnterpriseControllerAuth`: interface{}
 	fmt.Fprintf(os.Stdout, "Response from `EnterpriseAPI.EnterpriseControllerAuth`: %v\n", resp)
 }
 ```
@@ -57,11 +59,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+**interface{}**
 
 ### Authorization
 
-[bearer](../README.md#bearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -75,7 +77,9 @@ Name | Type | Description  | Notes
 
 ## EnterpriseControllerImportClients
 
-> map[string]interface{} EnterpriseControllerImportClients(ctx).ImportClientsDTO(importClientsDTO).Execute()
+> interface{} EnterpriseControllerImportClients(ctx).ImportClientsDTO(importClientsDTO).Execute()
+
+Import enterprise clients
 
 
 
@@ -92,7 +96,7 @@ import (
 )
 
 func main() {
-	importClientsDTO := *openapiclient.NewImportClientsDTO([]openapiclient.ImportClientDTO{*openapiclient.NewImportClientDTO("ClientEmail_example", "ClientId_example")}) // ImportClientsDTO | 
+	importClientsDTO := *openapiclient.NewImportClientsDTO([]openapiclient.ImportClientDTO{*openapiclient.NewImportClientDTO("client@example.com", "client_001")}) // ImportClientsDTO | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -101,7 +105,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `EnterpriseAPI.EnterpriseControllerImportClients``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `EnterpriseControllerImportClients`: map[string]interface{}
+	// response from `EnterpriseControllerImportClients`: interface{}
 	fmt.Fprintf(os.Stdout, "Response from `EnterpriseAPI.EnterpriseControllerImportClients`: %v\n", resp)
 }
 ```
@@ -121,7 +125,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+**interface{}**
 
 ### Authorization
 

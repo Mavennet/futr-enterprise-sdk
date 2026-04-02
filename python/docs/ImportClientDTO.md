@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**client_email** | **str** |  | 
-**client_id** | **str** |  | 
+**client_email** | **str** | Email address of the client to import | 
+**client_id** | **str** | Unique external identifier for the client. Used to track and associate this consumer with your external enterprise system. This ID is stored in the system and can be used for reporting and client tracking purposes. | 
 
 ## Example
 

@@ -35,13 +35,13 @@ class TestImportClientDTO(unittest.TestCase):
         model = ImportClientDTO()
         if include_optional:
             return ImportClientDTO(
-                client_email = '',
-                client_id = ''
+                client_email = 'client@example.com',
+                client_id = 'client_001'
             )
         else:
             return ImportClientDTO(
-                client_email = '',
-                client_id = '',
+                client_email = 'client@example.com',
+                client_id = 'client_001',
         )
         """
 

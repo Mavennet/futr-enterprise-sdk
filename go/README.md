@@ -72,8 +72,8 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DocumentsAPI* | [**DocumentControllerUploadDocument**](docs/DocumentsAPI.md#documentcontrolleruploaddocument) | **Post** /documents | Uploading a new document
-*EnterpriseAPI* | [**EnterpriseControllerAuth**](docs/EnterpriseAPI.md#enterprisecontrollerauth) | **Post** /enterprise/auth | 
-*EnterpriseAPI* | [**EnterpriseControllerImportClients**](docs/EnterpriseAPI.md#enterprisecontrollerimportclients) | **Post** /enterprise/import-clients | 
+*EnterpriseAPI* | [**EnterpriseControllerAuth**](docs/EnterpriseAPI.md#enterprisecontrollerauth) | **Post** /enterprise/auth | Authenticate and retrieve OAuth2 token
+*EnterpriseAPI* | [**EnterpriseControllerImportClients**](docs/EnterpriseAPI.md#enterprisecontrollerimportclients) | **Post** /enterprise/import-clients | Import enterprise clients
 
 
 ## Documentation For Models

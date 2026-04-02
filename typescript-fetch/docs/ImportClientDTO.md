@@ -16,8 +16,8 @@ import type { ImportClientDTO } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "clientEmail": null,
-  "clientId": null,
+  "clientEmail": client@example.com,
+  "clientId": client_001,
 } satisfies ImportClientDTO
 
 console.log(example)

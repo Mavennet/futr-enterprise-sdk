@@ -29,12 +29,14 @@ class TestEnterpriseApi(unittest.TestCase):
     def test_enterprise_controller_auth(self) -> None:
         """Test case for enterprise_controller_auth
 
+        Authenticate and retrieve OAuth2 token
         """
         pass
 
     def test_enterprise_controller_import_clients(self) -> None:
         """Test case for enterprise_controller_import_clients
 
+        Import enterprise clients
         """
         pass
 

@@ -35,13 +35,13 @@ class TestAuthDTO(unittest.TestCase):
         model = AuthDTO()
         if include_optional:
             return AuthDTO(
-                client_id = '',
-                client_secret = ''
+                client_id = 'abc123xyz789',
+                client_secret = 'secret_key_12345'
             )
         else:
             return AuthDTO(
-                client_id = '',
-                client_secret = '',
+                client_id = 'abc123xyz789',
+                client_secret = 'secret_key_12345',
         )
         """
 

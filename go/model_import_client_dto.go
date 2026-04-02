@@ -21,7 +21,9 @@ var _ MappedNullable = &ImportClientDTO{}
 
 // ImportClientDTO struct for ImportClientDTO
 type ImportClientDTO struct {
+	// Email address of the client to import
 	ClientEmail string `json:"clientEmail"`
+	// Unique external identifier for the client. Used to track and associate this consumer with your external enterprise system. This ID is stored in the system and can be used for reporting and client tracking purposes.
 	ClientId string `json:"clientId"`
 }
 

@@ -55,14 +55,6 @@ export class EnterpriseApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("bearer", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
 
         let urlPath = `/enterprise/auth`;
 
@@ -76,17 +68,25 @@ export class EnterpriseApi extends runtime.BaseAPI {
     }
 
     /**
+     * Exchanges your enterprise client credentials for an OAuth2 access token. This token is required for accessing protected enterprise endpoints including import-clients and document operations. 
+     * Authenticate and retrieve OAuth2 token
      */
-    async enterpriseControllerAuthRaw(requestParameters: EnterpriseControllerAuthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async enterpriseControllerAuthRaw(requestParameters: EnterpriseControllerAuthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.enterpriseControllerAuthRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
+     * Exchanges your enterprise client credentials for an OAuth2 access token. This token is required for accessing protected enterprise endpoints including import-clients and document operations. 
+     * Authenticate and retrieve OAuth2 token
      */
-    async enterpriseControllerAuth(requestParameters: EnterpriseControllerAuthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async enterpriseControllerAuth(requestParameters: EnterpriseControllerAuthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.enterpriseControllerAuthRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -129,17 +129,25 @@ export class EnterpriseApi extends runtime.BaseAPI {
     }
 
     /**
+     * Imports a list of clients into your organization. Requires a valid OAuth2 access token obtained from the /auth endpoint. Each client will be added to your organization with the provided email and unique external client ID.  The clientId will serve as an external identifier to track which enterprise client each consumer belongs to. Critically, this clientId mapping determines document upload behavior: documents uploaded by imported clients will be stored unencrypted (enterprise-managed storage). Clients will be created in Cognito if they do not already exist, and their association with your organization and the provided clientId will be stored in the system.  Import Format: A customer-generated CSV file will be used to onboard multiple users in bulk. The CSV file will have the following format:  clientEmail,clientId  When using the Brands App, the user\'s email will be used as the clientEmail and the initial password will be an OTP sent to the user\'s email. The clientId will be any unique identifier from your enterprise system that you want to associate with this client. This will allow you to maintain a mapping between your enterprise system and the consumers created in this platform, and will enable unencrypted document storage for these clients.  
+     * Import enterprise clients
      */
-    async enterpriseControllerImportClientsRaw(requestParameters: EnterpriseControllerImportClientsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
+    async enterpriseControllerImportClientsRaw(requestParameters: EnterpriseControllerImportClientsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>> {
         const requestOptions = await this.enterpriseControllerImportClientsRequestOpts(requestParameters);
         const response = await this.request(requestOptions, initOverrides);
 
-        return new runtime.JSONApiResponse<any>(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<any>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
     }
 
     /**
+     * Imports a list of clients into your organization. Requires a valid OAuth2 access token obtained from the /auth endpoint. Each client will be added to your organization with the provided email and unique external client ID.  The clientId will serve as an external identifier to track which enterprise client each consumer belongs to. Critically, this clientId mapping determines document upload behavior: documents uploaded by imported clients will be stored unencrypted (enterprise-managed storage). Clients will be created in Cognito if they do not already exist, and their association with your organization and the provided clientId will be stored in the system.  Import Format: A customer-generated CSV file will be used to onboard multiple users in bulk. The CSV file will have the following format:  clientEmail,clientId  When using the Brands App, the user\'s email will be used as the clientEmail and the initial password will be an OTP sent to the user\'s email. The clientId will be any unique identifier from your enterprise system that you want to associate with this client. This will allow you to maintain a mapping between your enterprise system and the consumers created in this platform, and will enable unencrypted document storage for these clients.  
+     * Import enterprise clients
      */
-    async enterpriseControllerImportClients(requestParameters: EnterpriseControllerImportClientsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
+    async enterpriseControllerImportClients(requestParameters: EnterpriseControllerImportClientsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any> {
         const response = await this.enterpriseControllerImportClientsRaw(requestParameters, initOverrides);
         return await response.value();
     }
